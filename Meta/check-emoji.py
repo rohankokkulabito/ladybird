@@ -45,13 +45,13 @@ def any_problems_here():
             found_invalid_filenames = True
 
         try:
-            code_points = [int(code_point[len('U+'):], 16) for code_point in base_filename.split('_')]
-            if any(code_point > 0x10ffff for code_point in code_points):
-                print(f'Filename {filename} contains a code point exceeding U+10FFFF')
-                found_invalid_filenames = True
-        except ValueError:
-            print(f'Filename {filename} contains invalid Unicode code points.')
-            found_invalid_filenames = True
+             code_points = [int(code_point[len('U+'):], 16) for code_point in base_filename.split('_')]
+         if any(code_point > 0x10ffff for code_point in code_points):
+             print(f'Filename {filename} contains a code point exceeding U+10FFFF')
+             found_invalid_filenames = True
+     except (ValueError, TypeError) as e:
+         print(f'Filename {filename} contains invalid Unicode code points: {e}')
+         found_invalid_filenames = True
 
     return found_invalid_filenames
 
