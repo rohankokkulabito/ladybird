@@ -57,11 +57,11 @@ def any_problems_here():
 
 if __name__ == '__main__':
     try:
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        os.chdir(os.path.join(script_dir, "../Base/res/emoji/"))
-    except Exception as e:
-        print(f"Error changing directory: {e}")
-        sys.exit(1)
+     script_dir = os.path.dirname(os.path.abspath(__file__))
+     os.chdir(os.path.join(script_dir, "../Base/res/emoji/"))
+ except OSError as e:
+     print(f"Error changing directory: {e}")
+     sys.exit(1)
 
     if any_problems_here():
         sys.exit(1)
